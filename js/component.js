@@ -1,69 +1,38 @@
-
-
-export const plantStaffFavoriteComponent = (plant) => `
-        <div class="plants-content">
-        <img src="images/illustrations/pick.png" alt="HandWithPlant">
-        <h3>Our picks for you</h3>
-        <div class="plants-wrapper">
-            <div class="plant staff-favorite">
-                <div class="staff-favorite-mark">
-                    <span>✨ Staff Favorite</span>
-                </div>
-                <div class="plant-image">
-                    <img src="${plant.imgUrl}" alt="PlantType">
-                </div>
-                <div class="plant-info">
-                    <div class="plant-type">
-                        <h4>${plant.name}</h4>
-                    </div>
-                    <div class="plant-specs">
-                        <span class="price">$${plant.price}</span>
-                        <div class="plant-specs-icon">
-                            <img src="/images/icons/${plant.toxicity}" alt="PetFriendly">
-                            <!-- <img src="/images/icons/toxic.svg" alt="Toxic"> -->
-                            <img src="/images/icons/${plant.sun}-sun.svg" alt="SunLevel">
-                            <!-- <img src="/images/icons/high-sun.svg" alt="SunLevel"> -->
-                            <img src="/images/icons/${plant.water}-drop.svg" alt="WaterFrequency">
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-`
+const nonSunImg = require('../images/icons/no-sun.svg')
+const lowSunImg = require('../images/icons/low-sun.svg')
+const highSunImg = require('../images/icons/high-sun.svg')
+const oneDropImg = require('../images/icons/1-drop.svg')
+const twoDropImg = require('../images/icons/2-drops.svg')
+const threeDropImg = require('../images/icons/3-drops.svg')
+const petDropImg = require('../images/icons/pet.svg')
+const toxicDropImg = require('../images/icons/toxic.svg')
 
 export const plantComponent = (plant) => `
-        <div class="plants-content">
-        <img src="images/illustrations/pick.png" alt="HandWithPlant">
-        <h3>Our picks for you</h3>
-        <div class="plants-wrapper">
-            <div class="plant staff-favorite">
-                <div class="staff-favorite-mark">
-                    <span>✨ Staff Favorite</span>
-                </div>
-                <div class="plant-image">
-                    <img src=${plant.imgUrl}" alt="PlantType">
-                </div>
-                <div class="plant-info">
-                    <div class="plant-type">
-                        <h4>${plant.name}</h4>
-                    </div>
-                    <div class="plant-specs">
-                        <span class="price">${plant.price}</span>
-                        <div class="plant-specs-icon">
-                            <img src="/images/icons/${plant.toxicity}" alt="PetFriendly">
-                            <!-- <img src="/images/icons/toxic.svg" alt="Toxic"> -->
-                            <img src="/images/icons/${plant.sun}-sun.svg" alt="SunLevel">
-                            <!-- <img src="/images/icons/high-sun.svg" alt="SunLevel"> -->
-                            <img src="/images/icons/${plant.water}-drop.svg" alt="WaterFrequency">
-                        </div>
-                    </div>
+    <div class="plant ${plant.staff_favorite ? 'staff-favorite' : ""}">
+        ${plant.staff_favorite ? '<div class="staff-favorite-mark"> <span>✨ Staff Favorite</span></div>' : ""}
+        <img src="${plant.url}" alt="PlantType">
+        <div class="plant-info">
+            <div class="plant-type">
+                <h4>${plant.name}</h4>
+            </div>
+            <div class="plant-specs">
+                <span class="price">$${plant.price}</span>
+                <div class="plant-specs-icon">
+                    <img src="${plant.toxicity ? toxicDropImg : petDropImg}" alt="${plant.toxicity ? 'Toxicity' : 'PetFriendly'}">
+                    <img src="${sun(plant.sun)}" alt="SunLevel">
+                    <img src="${water(plant.water)}" alt="WaterFrequency">
                 </div>
             </div>
-
         </div>
     </div>
 `
-
-export const test = `<h1> Renderizou!</h1>`
+const sun = (sunLevel) =>{
+    if (sunLevel == "high") return highSunImg 
+    if (sunLevel == "low") return lowSunImg 
+    return nonSunImg
+}
+const water = (WaterFrequency) =>{
+    if (WaterFrequency == "daily") return threeDropImg 
+    if (WaterFrequency == "regularly") return twoDropImg 
+    return oneDropImg
+}
