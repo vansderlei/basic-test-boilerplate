@@ -1,0 +1,258 @@
+$light-green: #75BC97;
+$dark-green: #15573f;
+
+body {
+    font-family: "Montserrat", sans-serif;
+    margin: 0;
+    
+    p {
+        font-size: 14px;
+        line-height: 22px;
+        color: #848484;
+    }
+    select{
+        width: 100%;
+        height: 40px;
+        border: 1px solid #a8a8a8;
+        box-sizing: border-box;
+        border-radius: 19px;
+        background-color: #fff;
+        -moz-appearance: none;
+        -webkit-appearance: none;
+        appearance: none;
+        background: transparent;
+        background-image: url(../images/icons/select-arrow-down.svg);
+        background-repeat: no-repeat;
+        background-position-x: calc(100% - 16px);
+        background-position-y: 14px;
+        padding: 8px 32px 8px 16px;
+        font-weight: 300;
+        font-size: 14px;
+        color: #a8a8a8;
+        outline: none;
+    }    
+}
+
+.container{
+    .banner {
+        background-color: $light-green;
+        height: 500px;
+
+        &::before, &::after{
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 2;
+            height: 500px;
+            background-size: auto 500px;
+            background-repeat: no-repeat;
+        }
+
+        &::before{
+            background-image: url(../images/hero/desktop/left-leaves.png);
+            background-position: top left;
+        }
+        &::after{
+            background-image: url(../images/hero/desktop/right-leaves.png);
+            background-position: top right;
+        }
+
+        .banner-info{
+            position: relative;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            max-width: 900px;
+            margin: 0 auto;
+            
+            .title {
+                position: relative;
+                color: #fff;
+                font-size: 2.2em;
+
+                h1{
+                    font-size: 2em;
+                    margin: 0.5em 0;
+                }
+            }
+            .header{
+                display: flex;
+                flex-direction: column;
+                max-height: 400px;
+                max-width: 500px;
+                justify-content: space-between;
+                z-index: 4;
+            }
+            .banner-image{
+                .desktop-image{
+                    max-height: 470px;
+                    margin: 15px auto 0;
+                }
+                .mobile-image{
+                    display: none;
+                }
+            }
+        }
+
+    }
+    .content{
+        display: flex;
+        justify-content: center;
+        max-width: 900px;
+        margin: 0 auto;
+
+        .section{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 32px 0;
+            justify-content: space-between;
+
+            &:nth-child(even) {
+                padding: 32px 95px
+            }
+            &:nth-child(1) {
+                padding: 32px 0 32px 0;
+            }
+            &:nth-child(3) {
+                padding: 32px 32px 32px 0;
+            }
+
+            .section-icon{
+                max-width: 100px;
+            }
+        }
+    }   
+    #no-results{
+        background-color: #f7f7f7;
+        padding: 32px 0;
+
+        .no-results-content{
+            display: flex;
+            max-width: 900px;
+            margin: 0 auto;
+
+            .no-results-info{
+                width: 500px;
+                margin: 0 64px 0 0;
+
+                h2{
+                    font-size: 3em;
+                    color: #a9a9a9;;
+                }
+                p{
+                    max-width: 215px;
+                    font-size: 15px;
+                }
+            }
+        }
+    } 
+}
+
+@media screen and (max-width: 992px){
+    .container{
+        .banner-info, .content, .no-results-content {
+            padding: 0 45px;
+        }
+        .banner{
+            .banner-info{
+                .title{
+                    h1 {
+                        font-size: 1.5em;
+                        margin: 0.5em 0;
+                    }
+                }
+            }
+        } 
+    }
+}
+@media screen and (max-width: 860px){
+    .container{
+        .banner{
+            &::after {
+                display: none
+            }
+            .banner-info{
+                .banner-image {
+                    .desktop-image {
+                        display: none;
+                    }
+                }
+                height: 100%;
+
+                .title{
+                    h1 {
+                        font-size: 1.5em;
+                        margin: 0.5em 0;
+                    }
+                }
+            }
+        } 
+
+    }
+}
+@media screen and (max-width: 520px){
+    .container{
+        .banner{
+            height: 100vh;
+
+            &::before {
+                background-image: url(../images/hero/mobile/mobile-leaves.png);
+                height: auto;
+                background-size: 100%;
+            }
+            
+            .banner-info{
+                align-items: flex-start;
+
+                .title{
+                    h1 {
+                        font-size: 1.5em;
+                        margin: 0.5em 0;
+                    }
+                }
+                .header{
+                    max-height: 100%;
+                    padding: 64px 0;
+                }
+                .banner-image {
+                
+                    .mobile-image {
+                        position: absolute;
+                        display: block;
+                        width: 100%;
+                        bottom: 15px;
+                        left: 0;
+                    }
+                }
+            }
+        }
+        .content {
+            flex-flow: column;
+        
+            .section:nth-child(even) {
+                padding: 32px 0;
+            }
+        }
+        #no-results{
+            .no-results-content{
+                flex-direction: column;
+                align-items: center;
+
+                .no-results-info {
+                    width: 100%;
+                    margin: 0;
+
+                    p{
+                        max-width: 100%;
+                        font-size: 16px;
+                        margin: 0 0 45px 0;
+                    }
+                }
+            }
+        }
+    }
+}
