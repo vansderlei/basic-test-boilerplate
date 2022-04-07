@@ -149,7 +149,69 @@ body {
                 }
             }
         }
-    } 
+    }
+    #plants {
+        background: #f7f7f7;
+
+        .plants-content{
+            display: flex;
+            justify-content: center;
+            max-width: 900px;
+            margin: 0 auto;
+            flex-direction: column;
+            img{
+                width: 200px;
+            }
+            h3{
+                font-size: 4em;
+            }
+            .plants-wrapper {
+                display: grid;
+
+                .plant{
+                    display: flex;
+                    flex-direction: column;
+                    background-color: #fff;
+                    padding: 32px;
+
+                    .plant-info{
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: space-between;
+                        color: $dark-green;
+
+                        h4{
+                            font-size: 2.5em;
+                            font-weight: 700;
+                        }
+                        .plant-specs{
+                            // display: flex;
+                            // align-items: flex-end;
+                            // flex-direction: column;
+
+                            span{
+                                font-weight: 700;
+                                font-size: 2em;
+                            }
+                            .plant-specs-icon{
+                                img{
+                                    width: 32px;
+                                }
+                            }
+                        }
+                    }
+                }
+                .plant.staff-favorite{
+                    .plant-specs{
+                        display: flex;
+                        align-items: flex-end;
+                        flex-direction: column;
+                    }
+                    
+                }
+            }
+        }
+    }
 }
 
 @media screen and (max-width: 992px){
