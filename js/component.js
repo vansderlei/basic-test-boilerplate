@@ -26,6 +26,7 @@ export const plantComponent = (plant) => `
         </div>
     </div>
 `
+
 const sun = (sunLevel) =>{
     if (sunLevel == "high") return highSunImg 
     if (sunLevel == "low") return lowSunImg 

@@ -27,6 +27,12 @@ window.onload = () => {
 
     const selects = document.querySelectorAll(".select-action")
     selects.forEach(element => element.addEventListener("change", changeSelect))
+
+    var goTopButton = document.getElementById("go-top")
+    var goBottomButton = document.getElementById("arrow-down")
+
+    goTopButton.addEventListener("click", () => window.scrollTo({ top: 100, behavior: 'smooth' }))
+    goBottomButton.addEventListener("click", () => window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' }))
     
     function changeSelect() {
         const selectedOptions = [
@@ -43,10 +49,20 @@ window.onload = () => {
 }
 
 const template = document.querySelector("#plants #selection")
+const templateWrapper = document.querySelector("#plants")
+const noResultsElement = document.getElementById('no-results')
+const noResultsSearchElement = document.getElementById('no-results-info')
 
 function createComponent(plants){
+    template.innerHTML= ''
     console.log("Plants: ", plants)
+    noResultsElement.style = 'display: none'
+    if(plants.error) {
+        templateWrapper.style = 'display: none'
+       return noResultsSearchElement.style = 'display: block'
+    }
+    noResultsSearchElement.style = 'display: none'
+    templateWrapper.style = 'display: block'
     plants.forEach(plant => template.innerHTML += plantComponent(plant))
-    // plants.forEach(plant => template.innerHTML = plantComponent(plant))
 }
 
